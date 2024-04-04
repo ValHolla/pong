@@ -61,16 +61,19 @@ class Pong:
             self.left_score += 1
         elif player == "right":
             self.right_score += 1
-        self.ball_moving = False
-        self.ball.reset()
-        self.left_paddle.reset()
-        self.right_paddle.reset()
+        self.reset_positions()
 
     def update_score(self):
         if self.ball.x - BALL_RADIUS <= 0:
             self.scored("right")
         elif self.ball.x + BALL_RADIUS >= SCREEN_WIDTH:
             self.scored("left")
+
+    def reset_positions(self):
+        self.ball_moving = False
+        self.ball.reset()
+        self.left_paddle.reset()
+        self.right_paddle.reset()
 
     def show_game_over(self):
         if self.left_score >= WINNING_SCORE:
@@ -81,9 +84,7 @@ class Pong:
             self.winner = "right"
         if self.game_over:
             self.user_interface.game_over(SCREEN, self.winner)
-            self.ball.reset()
-            self.left_paddle.reset()
-            self.right_paddle.reset()
+            self.reset_positions()
             self.left_score = 0
             self.right_score = 0
             self.game_over = False
