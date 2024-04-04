@@ -36,7 +36,7 @@ class Pong:
         )
         self.ball = Ball(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, BALL_RADIUS)
 
-    def new_game(self):
+    def draw_game_field(self):
         SCREEN.fill((0, 0, 0))
         self.user_interface.show_score(SCREEN, self.left_score, self.right_score)
         self.user_interface.draw_field(SCREEN)
@@ -101,7 +101,7 @@ def main():
         keys = pygame.key.get_pressed()
         if keys[pygame.K_SPACE]:
             game.ball_moving = True
-        game.new_game()
+        game.draw_game_field()
         game.move_paddles(keys, game.left_paddle, game.right_paddle)
         game.ball.move(game.direction, game.ball_moving)
         game.ball.collide(game.left_paddle, game.right_paddle)
