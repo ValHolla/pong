@@ -18,10 +18,6 @@ from game.settings import (
 )
 from game.user_interface import UserInterface
 
-pygame.init()
-SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Pong")
-
 
 class Pong:
     def __init__(self):
@@ -70,7 +66,6 @@ class Pong:
         self.left_paddle.reset()
         self.right_paddle.reset()
 
-            
     def update_score(self):
         if self.ball.x - BALL_RADIUS <= 0:
             self.scored("right")
@@ -119,4 +114,7 @@ def main():
 
 
 if __name__ == "__main__":
+    pygame.init()
+    SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame.display.set_caption("Pong")
     main()
