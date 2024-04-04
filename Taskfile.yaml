@@ -25,9 +25,9 @@ tasks:
         desc: Format with isort & black via poetry
         cmds:
             # https://pycqa.github.io/isort/
-            - poetry run isort . -v
+            - poetry run isort .
             # https://black.readthedocs.io/
-            - poetry run black . -v
+            - poetry run black .
 
     lint:
         aliases: [l]
