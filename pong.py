@@ -31,7 +31,6 @@ class Pong:
         self.left_score = 0
         self.right_score = 0
         self.ball_moving = False
-        self.scored = False
         self.winner = ""
         self.direction = choice(["left", "right"])
         self.user_interface = UserInterface()
@@ -60,21 +59,23 @@ class Pong:
         if keys[pygame.K_DOWN] and right_paddle.y + PADDLE_VELOCITY + right_paddle.height <= SCREEN_HEIGHT:
             right_paddle.move("down")
 
+    def scored(self, player):
+        self.direction = player
+        if player == "left":
+            self.left_score += 1
+        elif player == "right":
+            self.right_score += 1
+        self.ball_moving = False
+        self.ball.reset()
+        self.left_paddle.reset()
+        self.right_paddle.reset()
+
+            
     def update_score(self):
         if self.ball.x - BALL_RADIUS <= 0:
-            self.scored = True
-            self.direction = "right"
-            self.right_score += 1
+            self.scored("right")
         elif self.ball.x + BALL_RADIUS >= SCREEN_WIDTH:
-            self.scored = True
-            self.direction = "left"
-            self.left_score += 1
-        if self.scored:
-            self.ball_moving = False
-            self.ball.reset()
-            self.left_paddle.reset()
-            self.right_paddle.reset()
-            self.scored = False
+            self.scored("left")
 
     def show_game_over(self):
         if self.left_score >= WINNING_SCORE:
