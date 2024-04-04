@@ -43,49 +43,24 @@ tasks:
     #         # https://docs.pytest.org/
     #         - poetry run pytest {{.CLI_ARGS}}
 
-    # flt:
-    #     desc: Run fmt, lint, & test
-    #     cmds:
-    #         - task: fmt
-    #         - task: lint
-    #         - task: test
 
-    # build:
-    #     aliases: [b]
-    #     desc: Build artifact.zip package for deployment via poetry
-    #     cmds:
-    #         - rm -rf dist
-    #         - rm -rf build
-    #         - poetry build
-    #         - poetry run pip install -t build/package dist/*.whl
-    #         - cd build/package ; zip -r ../artifact.zip . -x '*.pyc'
+    build:
+        aliases: [b]
+        desc: Build artifact.zip package for deployment via poetry
+        cmds:
+            - rm -rf dist
+            - rm -rf build
+            - poetry build
+            - poetry run pip install --no-cache-dir -t build/package dist/*.whl
+            - poetry run pyclean build/package
+            - cd build/package ; zip -r ../artifact.zip .
 
-    # deploy:
-    #     aliases: [d]
-    #     desc: Copy local artifact.zip from build task to s3 using aws cli
-    #     cmds:
-    #         - aws s3 cp build/artifact.zip s3://internal-release-us-west-2-213195788881-pcf-ehi/image-metadata/image-metadata-{{ .GIT_BRANCH }}-{{ .GIT_COMMIT }}.zip --region us-west-2
-    #     preconditions:
-    #         - test build/artifact.zip
-    #     vars:
-    #         GIT_COMMIT:
-    #             sh: git log -n 1 --format=%h
-    #         GIT_BRANCH:
-    #             sh: git branch --show-current | tr '/' '-'
 
-    # release:
-    #     aliases: [r]
-    #     desc: Runs build task, then runs the deploy task
-    #     cmds:
-    #         - task: build
-    #         - task: deploy
-
-    # all:
-    #     aliases: [a]
-    #     desc: Run all tasks in order
-    #     cmds:
-    #         - task: install
-    #         - task: fmt
-    #         - task: lint
-    #         - task: test
-    #         - task: release
+    all:
+        aliases: [a]
+        desc: Run all tasks in order
+        cmds:
+            - task: install
+            - task: fmt
+            - task: lint
+            #- task: test

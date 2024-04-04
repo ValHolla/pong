@@ -195,6 +195,17 @@ dev = ["pre-commit", "tox"]
 testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
+name = "pyclean"
+version = "3.0.0"
+description = "Pure Python cross-platform pyclean. Clean up your Python bytecode."
+optional = false
+python-versions = ">=3.5"
+files = [
+    {file = "pyclean-3.0.0-py3-none-any.whl", hash = "sha256:a1d8114991cf09994bc511cd0b050f3e398ae2bc8bfc0bbd1bdbec8ba048e6dd"},
+    {file = "pyclean-3.0.0.tar.gz", hash = "sha256:a48be7afd512b1923a7b9decc1219bbbe2d73199c939b46c936448f904a180ce"},
+]
+
+[[package]]
 name = "pygame-ce"
 version = "2.4.1"
 description = "Python Game Development"
@@ -315,4 +326,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "9467fddba45a31d6148ac56fce12b870a7d22cb88b0a47d66192dc0e1c707814"
+content-hash = "9468712231461db766a76fdd54e393a5915501ffcc7b5077fbaa9ed6f3e89fb1"

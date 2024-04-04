@@ -3,6 +3,7 @@ name = "pong"
 version = "0.1.0"
 description = "PyGame implementation of the classic game Pong"
 authors = ["Mike Watters <valholla@gmail.com>"]
+include = [{ path = "game", format = ["sdist", "wheel"] }]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -13,6 +14,7 @@ pylint = "3.*"
 pytest = "8.*"
 isort = "5.*"
 black = "24.*"
+pyclean = "^3.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
