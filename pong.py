@@ -21,6 +21,10 @@ from game.user_interface import UserInterface
 
 class Pong:
     def __init__(self):
+        pygame.init()
+        self.SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+        pygame.display.set_caption("Pong")
+
         self.playing = True
         self.game_over = False
         self.clock = pygame.time.Clock()
@@ -37,12 +41,12 @@ class Pong:
         self.ball = Ball(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, BALL_RADIUS)
 
     def draw_game_field(self):
-        SCREEN.fill((0, 0, 0))
-        self.user_interface.show_score(SCREEN, self.left_score, self.right_score)
-        self.user_interface.draw_field(SCREEN)
-        self.left_paddle.draw(SCREEN)
-        self.right_paddle.draw(SCREEN)
-        self.ball.draw(SCREEN)
+        self.SCREEN.fill((0, 0, 0))
+        self.user_interface.show_score(self.SCREEN, self.left_score, self.right_score)
+        self.user_interface.draw_field(self.SCREEN)
+        self.left_paddle.draw(self.SCREEN)
+        self.right_paddle.draw(self.SCREEN)
+        self.ball.draw(self.SCREEN)
 
     def move_paddles(self, keys, left_paddle, right_paddle):
         if keys[pygame.K_w] and left_paddle.y - PADDLE_VELOCITY >= 0:
@@ -83,7 +87,7 @@ class Pong:
             self.game_over = True
             self.winner = "right"
         if self.game_over:
-            self.user_interface.game_over(SCREEN, self.winner)
+            self.user_interface.game_over(self.SCREEN, self.winner)
             self.reset_positions()
             self.left_score = 0
             self.right_score = 0
@@ -115,7 +119,4 @@ def main():
 
 
 if __name__ == "__main__":
-    pygame.init()
-    SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption("Pong")
     main()
