@@ -6,8 +6,8 @@ authors = ["Mike Watters <valholla@gmail.com>"]
 include = [{ path = "game", format = ["sdist", "wheel"] }]
 
 [tool.poetry.dependencies]
-python = "^3.11"
-pygame-ce = "^2.4.1"
+python = "^3.13"
+pygame-ce = "^2.5.3"
 
 [tool.poetry.group.Dev.dependencies]
 pylint = "3.*"
@@ -95,6 +95,7 @@ disable = [
   "too-few-public-methods",
   "too-many-arguments",
   "too-many-instance-attributes",
+  "invalid-name",
 ]
 
 [tool.pylint.design]

@@ -17,8 +17,8 @@ tasks:
         desc: Installs the project dependencies via poetry install
         cmds:
             - poetry install --no-root
-            - poetry lock --no-update
-            - poetry install --sync --no-root
+            - poetry lock 
+            - poetry sync --no-root
 
     fmt:
         aliases: [f]

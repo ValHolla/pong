@@ -22,6 +22,7 @@ class Ball:
 
     def move(self, direction, moving):
         """move the ball"""
+        multiplier = 1
         if moving:
             if direction == "left":
                 multiplier = -1
